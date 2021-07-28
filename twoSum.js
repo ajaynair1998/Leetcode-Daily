@@ -1,3 +1,6 @@
+// O(n) time without sorting
+
+
 function twoSum(nums,target)
 {
     let lengthOfArray=nums.length
