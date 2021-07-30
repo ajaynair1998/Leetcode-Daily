@@ -19,4 +19,6 @@ def threeSumCLosest(array, target):
                 return res
             
     return res
+
+# This can also be done Using Binary Search
         
