@@ -4,7 +4,7 @@
 def 3sum(array):
     nums.sort()
     result = []
-    for i in range(len(nums)):
+    for i in range(len(nums) - 2):
         if i > 0 and nums[i] == nums[i - 1]:
             continue
         l, r = i + 1, len(nums) - 1
