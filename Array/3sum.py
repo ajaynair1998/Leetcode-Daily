@@ -1,7 +1,7 @@
 # Solution 
 # Time O(n^2) | Space O(n)
 
-def 3sum(array):
+def 3sum(nums):
     nums.sort()
     result = []
     for i in range(len(nums) - 2):
