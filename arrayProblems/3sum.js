@@ -39,14 +39,15 @@ function threeSum(nums)
             {
                 finalArray.push([nums[mainPointer],leftValue,rightValue])
 
-                while(nums[leftPointer] === nums[leftPointer + 1])
-                {
-                    leftPointer++
-                }
-                while(nums[rightPointer] === nums[rightPointer-1])
-                {
-                    rightPointer--
-                }
+                    // to avoid duplicates on left and right pointer
+                    while(nums[leftPointer] === nums[leftPointer + 1])
+                    {
+                        leftPointer++
+                    }
+                    while(nums[rightPointer] === nums[rightPointer-1])
+                    {
+                        rightPointer--
+                    }
 
                 leftPointer++
                 rightPointer--
