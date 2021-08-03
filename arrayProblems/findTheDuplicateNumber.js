@@ -26,5 +26,7 @@ function findTheDuplicateNumber(nums)
     }
 
     return pointerTwo
-};
 }
+;
+
+console.log(findTheDuplicateNumber(nums = [1,3,4,2,2]))
