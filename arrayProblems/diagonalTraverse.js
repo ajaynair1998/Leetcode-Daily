@@ -1,3 +1,5 @@
+
+// Using hashmap
 function findDiagonalOrder(mat)
 {
     // to store the diagonals
@@ -35,6 +37,12 @@ function findDiagonalOrder(mat)
 
     return finalArray
     
+}
+
+// without hashmap
+findDiagonalOrderWithoutHashMap(mat)
+{
+    // Do Later
 }
 
 console.log(findDiagonalOrder([[1,2,3],[4,5,6],[7,8,9]]))
