@@ -12,3 +12,9 @@ def minDepth(root):
         return 1 + root.left + root.right
     
     return min(left, right) + 1
+
+# Solution - Iterative 
+# Tiem O(N) | Space O(N)
+
+def minDepth(root):
+    
