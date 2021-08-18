@@ -17,4 +17,18 @@ def minDepth(root):
 # Tiem O(N) | Space O(N)
 
 def minDepth(root):
-    
+    if not root:
+        return 0
+    stack = [(root, 1)]
+    while stack:
+        node, depth = stack.poop(0)
+        if not node.left and not node.right:
+            return depth
+        
+        if node.left:
+            stack.append((node.left, depth + 1))
+            
+        if node.right:
+            stack.append((node.right, depth + 1))
+            
+            
