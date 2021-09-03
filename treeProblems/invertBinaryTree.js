@@ -21,3 +21,7 @@ function swap(root)
     root.right=temp
     return root
 }
+
+
+
+
