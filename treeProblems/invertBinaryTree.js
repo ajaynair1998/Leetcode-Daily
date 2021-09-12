@@ -15,9 +15,6 @@ function traverse(root)
 
 function swap(root)
 {
-    let temp=root.left
-
-    root.left=root.right
-    root.right=temp
+    [root.left,root.right]=[root.right,root.left]
     return root
 }
