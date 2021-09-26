@@ -21,8 +21,14 @@ function minWindow(s, t) {
     if (subString[currentLetter] != undefined) {
       subString[currentLetter] = subString[currentLetter] - 1;
     }
-    let count = Object.values(subString).reduce((acc, item) => acc + item);
-    // console.log(s.slice(left, right + 1));
+    let count = Object.values(subString).reduce((acc, item) => {
+      if (item > 0) {
+        return acc + item;
+      } else {
+        return acc + 0;
+      }
+    }, 0);
+    console.log(count, subString);
     while (count <= 0) {
       found = true;
       let currentWindow = right - left - 1;
@@ -37,10 +43,16 @@ function minWindow(s, t) {
       }
       //   console.log(s.slice(left, right + 1));
       left++;
-      count = Object.values(subString).reduce((acc, item) => acc + item);
+      count = Object.values(subString).reduce((acc, item) => {
+        if (item > 0) {
+          return acc + item;
+        } else {
+          return acc + 0;
+        }
+      }, 0);
     }
   }
   return found ? s.slice(leftOfMinimum, rightOfMinimum + 1) : "";
 }
 
-console.log(minWindow((s = "ADOBECODEBANC"), (t = "ABC")));
+console.log(minWindow("aaaaaaaaaaaabbbbbcdd", "abcdd"));
