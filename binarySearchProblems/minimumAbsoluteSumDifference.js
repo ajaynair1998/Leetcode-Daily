@@ -1,56 +1,57 @@
 function minAbsoluteSumDiff(nums1, nums2) {
-  let mod = 10 ** 9 + 7;
-  let sortedNums = [...nums1].sort((a, b) => a - b);
-  let total = 0;
+  let mod=
+  let setOfNumbers = new Set();
+  let lengthOfArray = nums1.length;
+  let initialAbsoluteSumDifference = 0;
 
-  for (let i = 0; i < nums1.length; i++) {
-    total += Math.abs(nums1[i] - nums2[i]);
+  // add the numbers to a set and calculate the initial absolute sum difference
+  for (let i = 0; i < lengthOfArray; i++) {
+    setOfNumbers.add(nums1[i]);
+    initialAbsoluteSumDifference += Math.abs(nums1[i] - nums2[i]);
   }
+  // initialising the current minimum with the initial state
+  let minimum=initialAbsoluteSumDifference
 
-  let best = total;
+  // Create a sorted array from the set
+  let sortedUniqueNumbers = Array.from(setOfNumbers).sort((a, b) => a - b);
 
-  for (let i = 0; i < nums1.length; i++) {
-    let numsOneElement = nums1[i];
-    let numsTwoElement = nums2[i];
+  // now loop through nums1 and nums2
+  for (let i = 0; i < lengthOfArray; i++) {
+    if (nums1[i] === nums2[i]) {
+      continue;
+    }
 
-    let currentDifference = Math.abs(numsOneElement - numsTwoElement);
-
-    let closestNumberIndex = binarySearch(sortedNums, numsTwoElement);
-
-    const newDifference = Math.min(
-      Math.abs(sortedNums[idx] - nums2[i]),
-      closestNumberIndex >= 1
-        ? Math.abs(sortedNums[closestNumberIndex - 1] - nums2[i])
-        : Infinity,
-      closestNumberIndex + 1 < A.length
-        ? Math.abs(sortedNums[closestNumberIndex + 1] - nums2[i])
-        : Infinity
-    );
-   best =Math.min()
+    let currentDifference = Math.abs(nums1[i] - nums2[i]);
+    let closestNumber = findTheClosestNumber(sortedUniqueNumbers, nums2[i]);
+    let currentSum=
   }
-  return best % mod;
 }
 
-function binarySearch(arr, target) {
-  let start = 0;
-  let end = arr.length - 1;
+function findTheClosestNumber(sortedUniqueNumbers, target) {
+  let left = 0;
+  let right = sortedUniqueNumbers.length - 1;
 
-  let mid;
+  while (left < right) {
+    let mid = Math.floor((left + right) / 2);
 
-  while (start < end) {
-    mid = Math.round(start + (end - start) / 2);
-    console.log(mid);
-
-    if (arr[mid] === target) {
-      return mid;
-    } else if (arr[mid] > target) {
-      end = mid - 1;
+    if (sortedUniqueNumbers[mid] === target) {
+      return sortedUniqueNumbers[mid];
+    } else if (sortedUniqueNumbers[mid] < target) {
+      left = mid + 1;
     } else {
-      start = mid + 1;
+      right = mid;
     }
   }
 
-  return start;
+  let closest = sortedUniqueNumbers[left];
+  if (
+    left > 0 &&
+    Math.abs(target - sortedUniqueNumbers[left - 1]) < Math.abs(target, closest)
+  ) {
+    return sortedUniqueNumbers[left - 1];
+  }
+
+  return closest;
 }
 
 console.log(
