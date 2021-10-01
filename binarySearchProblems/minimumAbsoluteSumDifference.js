@@ -1,5 +1,5 @@
 function minAbsoluteSumDiff(nums1, nums2) {
-  let mod=
+  let mod = 1000000007;
   let setOfNumbers = new Set();
   let lengthOfArray = nums1.length;
   let initialAbsoluteSumDifference = 0;
@@ -10,7 +10,7 @@ function minAbsoluteSumDiff(nums1, nums2) {
     initialAbsoluteSumDifference += Math.abs(nums1[i] - nums2[i]);
   }
   // initialising the current minimum with the initial state
-  let minimum=initialAbsoluteSumDifference
+  let minimum = initialAbsoluteSumDifference;
 
   // Create a sorted array from the set
   let sortedUniqueNumbers = Array.from(setOfNumbers).sort((a, b) => a - b);
@@ -23,8 +23,14 @@ function minAbsoluteSumDiff(nums1, nums2) {
 
     let currentDifference = Math.abs(nums1[i] - nums2[i]);
     let closestNumber = findTheClosestNumber(sortedUniqueNumbers, nums2[i]);
-    let currentSum=
+    let currentSum =
+      (initialAbsoluteSumDifference -
+        currentDifference +
+        Math.abs(nums2[i] - closestNumber)) %
+      mod;
+    minimum = Math.min(minimum, currentSum) % mod;
   }
+  return minimum;
 }
 
 function findTheClosestNumber(sortedUniqueNumbers, target) {
@@ -35,8 +41,10 @@ function findTheClosestNumber(sortedUniqueNumbers, target) {
     let mid = Math.floor((left + right) / 2);
 
     if (sortedUniqueNumbers[mid] === target) {
-      return sortedUniqueNumbers[mid];
-    } else if (sortedUniqueNumbers[mid] < target) {
+      return target;
+    }
+
+    if (sortedUniqueNumbers[mid] < target) {
       left = mid + 1;
     } else {
       right = mid;
@@ -44,13 +52,16 @@ function findTheClosestNumber(sortedUniqueNumbers, target) {
   }
 
   let closest = sortedUniqueNumbers[left];
+
   if (
     left > 0 &&
-    Math.abs(target - sortedUniqueNumbers[left - 1]) < Math.abs(target, closest)
+    Math.abs(target - sortedUniqueNumbers[left - 1]) <
+      Math.abs(target - closest)
   ) {
+    console.log(sortedUniqueNumbers[left - 1]);
     return sortedUniqueNumbers[left - 1];
   }
-
+  console.log(closest);
   return closest;
 }
 
