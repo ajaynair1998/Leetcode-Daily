@@ -37,8 +37,11 @@ function rotateByMatrixManipulation(matrix) {
 
   // now reverse each row
   for (let i = 0; i < matrix.length; i++) {
-    for (let j = 0; j < Math.floor(matrix.length / 2); j++) {
-      [matrix[i][j], matrix[i][j - 1]] = [matrix[i][j - 1], matrix[i][j]];
+    for (let j = 0; j < matrix.length / 2; j++) {
+      [matrix[i][j], matrix[i][matrix.length - 1 - j]] = [
+        matrix[i][matrix.length - 1 - j],
+        matrix[i][j],
+      ];
     }
   }
   return matrix;
