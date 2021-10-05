@@ -12,9 +12,12 @@ function combinationSum(candidates, target) {
   let find = (target, currentPath, index) => {
     //   when we reach target in current recursion add it to the final path
     if (target === 0) {
+      // the current combination is complete
       finalPaths.push(currentPath);
+      return
     } else {
       while (index < candidates.length && target - candidates[index] >= 0) {
+        //   since we can choose the same number multiple times, we can start recursively calling from the same index position itself
         find(
           target - candidates[index],
           [...currentPath, candidates[index]],
