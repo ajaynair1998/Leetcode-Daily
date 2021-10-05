@@ -17,7 +17,6 @@ function combinationSum2(candidates, target) {
         index < candidatesSorted.length &&
         target - candidatesSorted[index] >= 0
       ) {
-        
         find(
           target - candidatesSorted[index],
           [...currentPath, candidatesSorted[index]],
@@ -26,7 +25,7 @@ function combinationSum2(candidates, target) {
 
         index++;
 
-        // skip duplicates 
+        // skip duplicates
         while (candidatesSorted[index] === candidatesSorted[index - 1]) index++;
       }
     }
