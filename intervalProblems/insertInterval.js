@@ -61,7 +61,7 @@ function insert(intervals, newInterval) {
       //   recursively call insert
       return insert(intervals, newInterval);
     } else {
-        console.log(intervals)
+      console.log(intervals);
       console.log("BROKE");
     }
   }
