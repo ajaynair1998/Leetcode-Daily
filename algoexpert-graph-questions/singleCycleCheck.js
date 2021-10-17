@@ -1,5 +1,4 @@
 function hasSingleCycle(array) {
-  // Write your code here.
   let counter = array.length;
   let currentIndex = 0;
   while (counter) {
