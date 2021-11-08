@@ -1,0 +1,3 @@
+let jump = function (nums) {
+    
+};
