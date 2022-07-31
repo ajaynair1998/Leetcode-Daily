@@ -11,5 +11,3 @@ function containsDuplicate(nums) {
     }
     return false;
 }
-let data = containsDuplicate([1, 2, 3, 1]);
-console.log(data);

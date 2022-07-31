@@ -16,6 +16,3 @@ function construct2DArray(
 	}
 	return finalArray;
 }
-
-let debugData = construct2DArray([1, 2, 3, 4], 2, 2);
-console.log("🚀 ~ file: construct2DArray.ts ~ line 10 ~ debugData", debugData);

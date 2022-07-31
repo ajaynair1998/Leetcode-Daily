@@ -12,5 +12,3 @@ function missingNumber(nums: number[]): number[] {
 	}
 	return missingNumbersInArray;
 }
-
-let debug = missingNumber([4, 3, 2, 7, 8, 2, 3, 1]);
