@@ -5,18 +5,17 @@ function productExceptSelf(nums) {
     let finalArray = [];
     for (let i = 1; i < nums.length; i++) {
         let start = i;
-        let end = nums.length - i - 1;
+        let end = nums.length - i;
         // left product
-        let currentProductFromLeft = nums[start] * productFromLeft[i - 1];
+        let currentProductFromLeft = nums[start - 1] * productFromLeft[i - 1];
         productFromLeft.push(currentProductFromLeft);
         // right product
-        let currentProductFromRight = nums[end] * productFromRight[end - 1];
+        let currentProductFromRight = nums[end] * productFromRight[0];
         productFromRight.unshift(currentProductFromRight);
     }
     for (let i = 0; i < nums.length; i++) {
         finalArray[i] = productFromLeft[i] * productFromRight[i];
     }
-    console.log("🚀 ~ file: productExceptSelf.ts ~ line 25 ~ productExceptSelf ~ finalArray", finalArray);
     return finalArray;
 }
 productExceptSelf([1, 2, 3, 4]);
