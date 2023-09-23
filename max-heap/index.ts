@@ -1,4 +1,7 @@
 class Maxheap {
+	constructor(array: number[]) {
+		this.heap = array;
+	}
 	public heap: number[] = [1, 2, 3, 4, 5, 6];
 
 	public swap(i: number, j: number) {
@@ -54,10 +57,6 @@ class Maxheap {
 		}
 	}
 
-	public setStartingHeap(array: number[]) {
-		this.heap = array;
-	}
-
 	public peek() {
 		console.log(this.heap);
 	}
@@ -94,7 +93,6 @@ class MaxheapHelpers {
 		return true;
 	}
 }
-const maxHeap = new Maxheap();
-maxHeap.setStartingHeap([1, 2, 3, 4, 5, 6]);
+const maxHeap = new Maxheap([1, 2, 3, 4, 5, 6, 7, 8, 9]);
 maxHeap.buildMaxHeap();
 maxHeap.peek();
