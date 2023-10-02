@@ -2,11 +2,12 @@ class Maxheap {
 	constructor(array: number[]) {
 		this.heap = array;
 	}
-	public heap: number[] = [1, 2, 3, 4, 5, 6];
+	public heap: number[] = [1, 5, 8, 7];
 
 	public swap(i: number, j: number) {
 		if (i < 0 || j < 0 || i >= this.heap.length || j >= this.heap.length) {
-			throw Error(`Invalid swap indexes ${i} ${j}`);
+			console.log(`Invalid swap indexes ${i} ${j}`);
+			throw new Error(`Invalid swap indexes ${i} ${j}`);
 		}
 
 		const temp = this.heap[i];
@@ -16,8 +17,13 @@ class Maxheap {
 
 	// INFO : This function goes from top to Bottom ie keep in mind this is
 	// for a single node comparison with its left and right node and swap( and will go down through the swapped node if swapped)
-	// so if you want to actually sort all levels you should run this from Math.floor(heap.length) - 1 to 0
-	public maxHeapify(i: number): void {
+	// so if you want to actually get the max value from all nodes(still not sort just gets the max value to the top)
+	// you should run this from Math.floor(heap.length) - 1 to 0
+
+	// to actually sort we need another function to append top Node to the end
+	// then get the max from the remaining elements then again append to end
+	//  In each consectutive Heapification dont include the last element
+	public maxHeapify(i: number, lastElement: number): void {
 		const leftNodeIndex = 2 * i + 1;
 		const rightNodeIndex = 2 * i + 2;
 
@@ -25,7 +31,11 @@ class Maxheap {
 		const valueAtIndex = this.heap[i];
 		let largest = i;
 
-		if (!MaxheapHelpers.leftNodeExists(this.heap, i)) {
+		if (
+			i > lastElement ||
+			leftNodeIndex > lastElement ||
+			!MaxheapHelpers.leftNodeExists(this.heap, i)
+		) {
 			// do nothing
 		} else if (valueAtIndex >= this.heap[leftNodeIndex]) {
 			// do nothing
@@ -33,7 +43,11 @@ class Maxheap {
 			largest = leftNodeIndex;
 		}
 
-		if (!MaxheapHelpers.rightNodeExists(this.heap, i)) {
+		if (
+			i > lastElement ||
+			rightNodeIndex > lastElement ||
+			!MaxheapHelpers.rightNodeExists(this.heap, i)
+		) {
 			// do nothing
 			// Below condition can be missed if not careful
 			// If we already found out left was bigger we have compare with left not with the initial node
@@ -45,15 +59,27 @@ class Maxheap {
 
 		if (largest != i) {
 			this.swap(i, largest);
-			this.maxHeapify(largest);
+			this.maxHeapify(largest, lastElement);
 		}
 	}
 
+	// INFO : This only brings the top element to the root , DOES NOT SORT
 	public buildMaxHeap() {
 		const lastInternalNode = Math.floor(this.heap.length / 2);
 
 		for (let i = lastInternalNode; i >= 0; i--) {
-			this.maxHeapify(i);
+			this.maxHeapify(i, this.heap.length - 1);
+		}
+	}
+
+	public heapSort() {
+		// INFO : first build max heap
+		this.buildMaxHeap();
+		const sizeOfHeap = this.heap.length;
+
+		for (let lastElement = sizeOfHeap - 1; lastElement >= 0; lastElement--) {
+			this.swap(lastElement, 0);
+			this.maxHeapify(0, lastElement - 1);
 		}
 	}
 
@@ -93,6 +119,6 @@ class MaxheapHelpers {
 		return true;
 	}
 }
-const maxHeap = new Maxheap([1, 2, 3, 4, 5, 6, 7, 8, 9]);
-maxHeap.buildMaxHeap();
+const maxHeap = new Maxheap([9, 8, 7, 2, 3]);
+maxHeap.heapSort();
 maxHeap.peek();
