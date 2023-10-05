@@ -89,12 +89,11 @@ function threeSum(nums: number[]): number[][] {
 	const sortedArray = helper.mergeSort(nums, 0, nums.length - 1);
 
 	while (firstPointer <= sortedArray.length - 3) {
-		if (
+		while (
 			firstPointer > 0 &&
 			sortedArray[firstPointer - 1] == sortedArray[firstPointer]
 		) {
 			firstPointer++;
-			continue;
 		}
 		const target = sortedArray[firstPointer];
 
