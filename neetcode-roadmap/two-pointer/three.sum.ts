@@ -94,16 +94,14 @@ function threeSum(nums: number[]): number[][] {
 			sortedArray[firstPointer - 1] == sortedArray[firstPointer]
 		) {
 			firstPointer++;
+			continue;
 		}
 		const target = sortedArray[firstPointer];
 
 		let secondPointer = firstPointer + 1;
 		let thirdPointer = sortedArray.length - 1;
 
-		while (
-			secondPointer < thirdPointer &&
-			sortedArray[firstPointer] != sortedArray[firstPointer - 1]
-		) {
+		while (secondPointer < thirdPointer) {
 			const valueAtSecondPointer = sortedArray[secondPointer];
 			const valueAtThirdPointer = sortedArray[thirdPointer];
 			const total = valueAtSecondPointer + valueAtThirdPointer;
