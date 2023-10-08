@@ -1,4 +1,4 @@
-class Helper {
+class KokoHelper {
 	public checkNumberOfTurnesNeeded(
 		bananas: number[],
 		speed: number,
@@ -38,7 +38,7 @@ class Helper {
 	}
 }
 function minEatingSpeed(piles: number[], h: number) {
-	const helper = new Helper();
+	const helper = new KokoHelper();
 
 	const possibleMaxValue = helper.findMaxBananaPile(piles);
 	let leftPointer = 1;
